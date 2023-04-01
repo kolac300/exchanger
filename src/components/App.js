@@ -1,43 +1,18 @@
 import { useEffect, useState } from "react";
-import { useToast } from "@chakra-ui/react";
 import RateCalculator from "./RateCalculator/RateCalculator";
 import { Grid, GridItem } from "@chakra-ui/react";
 import ActualRateBlock from "./ActualRatBlock/ActualRateBlock";
 import { filterCurrencyArray, prepearCurrencyArray } from "../Logic/Logic";
+import { actualRate } from "../API/monobankAPI";
+import fakeRes from "../API/monobankFakeApi.json";
 
 function App() {
   const [currencyObj, setCurrencyObj] = useState([]);
 
-  const toast = useToast();
-
   useEffect(() => {
     const fetchData = async () => {
-      const res = [
-        {
-          currencyCodeA: 840,
-          currencyCodeB: 980,
-          date: 1680213674,
-          rateBuy: 36.65,
-          rateCross: 0,
-          rateSell: 37.4406,
-        },
-        {
-          currencyCodeA: 978,
-          currencyCodeB: 980,
-          date: 1680213674,
-          rateBuy: 40,
-          rateCross: 0,
-          rateSell: 41.0998,
-        },
-        {
-          currencyCodeA: 978,
-          currencyCodeB: 840,
-          date: 1680213674,
-          rateBuy: 1.08,
-          rateCross: 0,
-          rateSell: 1.095,
-        },
-      ];
+      let res = await actualRate();
+      res = res ? res : fakeRes; /// monobank has visit limit
       if (res) {
         const filtredCurrencyArray = filterCurrencyArray(res);
         setCurrencyObj(prepearCurrencyArray(filtredCurrencyArray));
