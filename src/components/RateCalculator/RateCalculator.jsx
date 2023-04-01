@@ -21,8 +21,8 @@ export default function RateCalculator({ currencyObj }) {
 
   return (
     <>
-      <Grid templateColumns="repeat(3, 1fr)" gap={15}>
-        <GridItem w="100%">
+      <Grid templateColumns={"repeat(3, 1fr)"} gap={15}>
+        <GridItem w={"100%"}>
           <RateCalculatorBlock
             ref={childOneRef}
             onInputChange={handleInputChange2}
@@ -38,7 +38,7 @@ export default function RateCalculator({ currencyObj }) {
             }}
           />
         </GridItem>
-        <GridItem w="100%" margin={"auto"} textAlign={"center"}>
+        <GridItem w={"100%"} margin={"auto"} textAlign={"center"}>
           <Button
             alignItems={"center"}
             onClick={() => {
@@ -51,14 +51,14 @@ export default function RateCalculator({ currencyObj }) {
               setcurrencyСoefficient(recalcedCoficient);
               handleReverseValues(childOneRef, childTwoRef);
             }}
-            colorScheme="teal"
-            variant="solid"
+            colorScheme={"teal"}
+            variant={"solid"}
           >
             <ArrowLeftIcon color={"black"} /> Reverse
             <ArrowRightIcon color={"black"} />
           </Button>
         </GridItem>
-        <GridItem w="100%">
+        <GridItem w={"100%"}>
           <RateCalculatorBlock
             ref={childTwoRef}
             onInputChange={handleInputChange1}
